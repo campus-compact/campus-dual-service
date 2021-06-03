@@ -6,7 +6,6 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import service.lecture.mainlecture
 import service.login.handler.mainlogin
-import java.io.BufferedReader
 
 fun Application.configureRouting() {
     // Starting point for a Ktor app:
@@ -32,7 +31,8 @@ fun Application.configureRouting() {
         }
         post("/lecture") {
             val body = call.receive<String>()
-            call.respondText(mainlecture(body))
+            val headers = call.request.headers
+            call.respondText(mainlecture(body,headers))
         }
     }
 

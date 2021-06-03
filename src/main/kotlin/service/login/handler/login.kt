@@ -29,7 +29,6 @@ fun initClient(){
 }
 
 suspend fun mainlogin(body: String): String {
-
     initClient()
 
     //body -> {"username":400xxxx,"pw":"meinPW"}
