@@ -21,13 +21,7 @@ fun Application.configureRouting() {
         }
         post("/login") {
             val body = call.receive<String>()
-            var response = ""
-            try {
-                response = mainlogin(body)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            call.respondText(response)
+            call.respondText(mainlogin(body))
         }
         post("/lecture") {
             val body = call.receive<String>()

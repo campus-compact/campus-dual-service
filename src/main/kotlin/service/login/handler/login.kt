@@ -10,11 +10,13 @@ import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import mu.KotlinLogging
 import org.jsoup.Jsoup
 
 private const val ERP_URL = "https://erp.campus-dual.de"
 private const val SS_URL = "https://selfservice.campus-dual.de"
 private var client = HttpClient()
+private val logger = KotlinLogging.logger {}
 
 fun initClient(){
     client = HttpClient(CIO) {
@@ -32,7 +34,14 @@ suspend fun mainlogin(body: String): String {
     initClient()
 
     //body -> {"username":400xxxx,"pw":"meinPW"}
-    val bodyJson: JsonObject = Parser.default().parse(StringBuilder(body)) as JsonObject
+    var bodyJson = JsonObject()
+    try {
+        bodyJson = Parser.default().parse(StringBuilder(body)) as JsonObject
+    }catch (e : Exception){
+        logger.error { "$e + \n>>> [Individual Message] There is no JsonObject in the body, check your syntax." }
+        return  e.toString()
+    }
+
 
     //initial Request to get the hidden fields (especially "sap-login-XSRF")
     val initUrl = ERP_URL + "/sap/bc/webdynpro/sap/zba_initss?" +
@@ -46,10 +55,17 @@ suspend fun mainlogin(body: String): String {
     val hiddenInputs = initPage.select("#SL__FORM > input[type=hidden]")
 
     //login request
-    val params = hashMapOf(
-        "sap-user" to bodyJson.getValue("username").toString(),
-        "sap-password" to bodyJson.getValue("pw").toString()
-    )
+    var params = hashMapOf<String,String>()
+    try {
+        params = hashMapOf(
+            "sap-user" to bodyJson.getValue("username").toString(),
+            "sap-password" to bodyJson.getValue("pw").toString()
+        )
+    }catch (e : Exception){
+        logger.error { "$e + \n>>> [Individual Message] There is no 'username' or 'pw' in body-json." }
+        return e.toString()
+    }
+
     for (input in hiddenInputs) {
         params[input.attr("name")] = input.attr("value")
     }
@@ -72,6 +88,7 @@ suspend fun mainlogin(body: String): String {
     return if (index != -1) {
         mainResponse.readText().substring(index + 7, index + 7 + 32)
     } else {
+        logger.error { "No hash was included in the Response -> login data is probably wrong" }
         "No hash was included in the Response -> login data is probably wrong"
     }
 }
