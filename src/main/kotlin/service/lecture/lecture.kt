@@ -32,8 +32,6 @@ suspend fun mainlecture(body: String, headers: Headers): String {
     var username = bodyJson.getValue("username")
     var token = headers["Authorization"].toString()
 
-    allowAllCerts()
-
     var hash = getHashFromKeycloak(token)
 
     var strResponse: String
@@ -86,35 +84,15 @@ private fun DateStrToMilli(strDate: String): Long { //From "2018-12-01 15:10" TO
     return date.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli()
 }
 
-fun httpGet(urlString: String): String {
-    //Make the actual connection
-    val url = URL(urlString)
-    val urlConnection = url.openConnection() as HttpsURLConnection
-    urlConnection.setRequestProperty("User-Agent", USER_AGENT2)
+suspend fun httpGet(urlString: String): String {
+    val client = HttpClient(CIO)
+    val response = client.get<HttpResponse>(urlString) {
+        // Configure request parameters exposed by HttpRequestBuilder
+        userAgent(USER_AGENT2)
+    }
+    client.close()
 
-    //get and return inputStream (converted to a String)
-    val responseString = urlConnection.inputStream.bufferedReader().readText()
-    urlConnection.disconnect()
-    return responseString
-}
-
-fun allowAllCerts() {
-    val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-        override fun getAcceptedIssuers(): Array<X509Certificate?> {
-            return arrayOfNulls(0)
-        }
-
-        override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
-        }
-
-        override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
-        }
-    })
-
-    val sc = SSLContext.getInstance("SSL")
-    sc.init(null, trustAllCerts, SecureRandom())
-    HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
-    HttpsURLConnection.setDefaultHostnameVerifier { _, _ -> true }
+    return response.readText()
 }
 
 private suspend fun getHashFromKeycloak(token : String) : String {

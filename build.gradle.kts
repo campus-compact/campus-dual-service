@@ -31,6 +31,7 @@ dependencies {
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
+    implementation ("io.github.microutils:kotlin-logging:1.12.5")
 }
 
 //tasks.withType<Jar> {
