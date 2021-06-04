@@ -50,6 +50,8 @@ Das Bearer-Token ist im Header mitzugeben.
 > Logging von Exceptions
 > - https://github.com/MicroUtils/kotlin-logging
 > - https://github.com/MicroUtils/kotlin-logging/wiki
+>
+> [04.06.21] Fabian -> Logger ist implementiert (try & catch), Tests ausstehend
 
 > Kontrolle ob Token-des-Users und der User aus body übereinstimmen 
 
@@ -57,8 +59,6 @@ Das Bearer-Token ist im Header mitzugeben.
 
 > Implementierung weiterer Campus Funktionen
 
-> lecture: URL-client von login verwenden
- 
 > (?) Umstellen auf from fields -> derzeit raw json
 
 ---

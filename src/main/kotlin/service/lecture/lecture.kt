@@ -20,21 +20,34 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 
-private const val ERP_URL = "https://erp.campus-dual.de"
 private const val SS_URL = "https://selfservice.campus-dual.de"
-private const val USER_AGENT =
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+private const val CC_URL = "https://cc.mgutsche.de/auth/realms/master/protocol/openid-connect/userinfo"
+private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
 const val USER_AGENT2 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0"
 private val logger = KotlinLogging.logger {}
 
 suspend fun mainlecture(body: String, headers: Headers): String {
-    var bodyJson: JsonObject = Parser.default().parse(StringBuilder(body)) as JsonObject
-    var username = bodyJson.getValue("username")
-    var token = headers["Authorization"].toString()
+    var bodyJson = JsonObject()
+    var username = ""
+    var token = ""
 
-    var hash = getHashFromKeycloak(token)
+    try {
+        bodyJson = Parser.default().parse(StringBuilder(body)) as JsonObject
+        username = bodyJson.getValue("username").toString()
+        token = headers["Authorization"].toString()
+    }catch (e : Exception){
+        logger.error { "$e + \n>>> [Individual Message] The body is or the headers are not in the right format. Please check the inputs." }
+        return e.toString()
+    }
 
-    var strResponse: String
+    var hash = ""
+    try {
+        hash = getHashFromKeycloak(token)
+    }catch (e : Exception){
+        logger.error { "$e + \n>>> [Individual Message] There isn´t a way to get the hash from Keycloak with the sendet token." }
+        return e.toString()
+    }
+
     val currentTime = System.currentTimeMillis()
     val start = currentTime - 60 * 60 * 24 * 14
     val end = currentTime + 60 * 60 * 24 * 31 * 12
@@ -45,9 +58,16 @@ suspend fun mainlecture(body: String, headers: Headers): String {
             "end=$end&" +
             "_=$currentTime"
 
-    strResponse = httpGet(strURL)
+    var strResponse = ""
+        strResponse = httpGet(strURL)
 
-    val jArrResponse: JsonArray<JsonObject> = Parser.default().parse(StringBuilder(strResponse)) as JsonArray<JsonObject>
+    var jArrResponse = JsonArray<JsonObject>()
+    try{
+        jArrResponse = Parser.default().parse(StringBuilder(strResponse)) as JsonArray<JsonObject>
+    }catch (e : Exception){
+        logger.error { "$e + \n>>> [Individual Message] The 'get' to campus dual is not in the right format. Please check the inputs." }
+        return e.toString()
+    }
 
     //Rausschmeißer nach date
     var dateStart: Long
@@ -64,6 +84,7 @@ suspend fun mainlecture(body: String, headers: Headers): String {
             dateEnd = DateStrToMilli(bodyJson.getValue("end").toString())
         }
     }catch (e : Exception){ //if start & end = "", or not available
+        logger.info { "There isn´t a valid start or end in the body. The program gives all lectures." }
         return jArrResponse.toJsonString()
     }
 
@@ -97,7 +118,7 @@ suspend fun httpGet(urlString: String): String {
 
 private suspend fun getHashFromKeycloak(token : String) : String {
     val client = HttpClient(CIO)
-    val response = client.post<HttpResponse>("https://cc.mgutsche.de/auth/realms/master/protocol/openid-connect/userinfo") {
+    val response = client.post<HttpResponse>(CC_URL) {
         // Configure request parameters exposed by HttpRequestBuilder
         header("Authorization",token)
         userAgent(USER_AGENT2)
