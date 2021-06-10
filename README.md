@@ -20,7 +20,7 @@ pw: `changeit`
 Die 3 Möglichkeiten der Anfrage:
 > 1. Mit dem YYYY-MM-DD-Format:
 >
-> `{"username":400xxxx,"start":"2018-01-01" "end":"2018-12-31"}`
+> `{"username":400xxxx,"start":"2018-01-01","end":"2018-12-31"}`
 
 > 2. Mit dem Milliseconds-Format:
 >
