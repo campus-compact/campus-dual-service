@@ -18,7 +18,7 @@ pw: `changeit`
 ## Lecture Service
 
 Die 3 Möglichkeiten der Anfrage:
-> 1. Mit dem YYY-MM-DD-Format:
+> 1. Mit dem YYYY-MM-DD-Format:
 >
 > `{"username":400xxxx,"start":"2018-01-01" "end":"2018-12-31"}`
 
