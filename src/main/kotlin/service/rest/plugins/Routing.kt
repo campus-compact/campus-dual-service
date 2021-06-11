@@ -21,12 +21,12 @@ fun Application.configureRouting() {
         }
         post("/login") {
             val body = call.receive<String>()
-            call.respondText(mainlogin(body))
+            call.respondText(mainlogin(body,this))
         }
         post("/lecture") {
             val body = call.receive<String>()
             val headers = call.request.headers
-            call.respondText(mainlecture(body,headers))
+            call.respondText(mainlecture(body,headers, this))
         }
     }
 

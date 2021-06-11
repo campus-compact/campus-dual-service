@@ -3,22 +3,18 @@ package service.lecture
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
-import java.net.URL
-import java.security.SecureRandom
-import java.security.cert.X509Certificate
+import io.ktor.application.*
 import java.time.LocalDate
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import javax.net.ssl.HttpsURLConnection
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
 import mu.KotlinLogging
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.response.*
+import io.ktor.util.pipeline.*
 
 private const val SS_URL = "https://selfservice.campus-dual.de"
 private const val CC_URL = "https://cc.mgutsche.de/auth/realms/master/protocol/openid-connect/userinfo"
@@ -26,7 +22,7 @@ private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleW
 const val USER_AGENT2 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0"
 private val logger = KotlinLogging.logger {}
 
-suspend fun mainlecture(body: String, headers: Headers): String {
+suspend fun mainlecture(body: String, headers: Headers, router: PipelineContext<Unit, ApplicationCall>): String {
     var bodyJson = JsonObject()
     var username = ""
     var token = ""
@@ -37,6 +33,7 @@ suspend fun mainlecture(body: String, headers: Headers): String {
         token = headers["Authorization"].toString()
     }catch (e : Exception){
         logger.error { "$e + \n>>> [Individual Message] The body is or the headers are not in the right format. Please check the inputs." }
+        router.call.respond(HttpStatusCode.UnprocessableEntity)
         return e.toString()
     }
 
@@ -45,6 +42,7 @@ suspend fun mainlecture(body: String, headers: Headers): String {
         hash = getHashFromKeycloak(token)
     }catch (e : Exception){
         logger.error { "$e + \n>>> [Individual Message] There isn´t a way to get the hash from Keycloak with the sendet token." }
+        router.call.respond(HttpStatusCode.Unauthorized)
         return e.toString()
     }
 
@@ -66,6 +64,7 @@ suspend fun mainlecture(body: String, headers: Headers): String {
         jArrResponse = Parser.default().parse(StringBuilder(strResponse)) as JsonArray<JsonObject>
     }catch (e : Exception){
         logger.error { "$e + \n>>> [Individual Message] The 'get' to campus dual is not in the right format. Please check the inputs." }
+        router.call.respond(HttpStatusCode.UnprocessableEntity)
         return e.toString()
     }
 

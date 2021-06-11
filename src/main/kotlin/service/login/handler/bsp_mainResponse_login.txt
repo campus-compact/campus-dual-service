@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+    <head>
+        <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" >
+<meta http-equiv="pragma" content="no-cache" >
+<meta http-equiv="Cache-Control" content="no-cache" >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<meta http-equiv="Content-Language" content="de-DE" >
+<meta http-equiv="X-UA-Compatible" content="IE=Emulate8" ><script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.19.custom.min.js"></script>
+<script type="text/javascript" src="/js/qtip.js"></script>
+<script type="text/javascript" src="/js/jquery.timeentry.js"></script>
+<script type="text/javascript" src="/js/jquery.timeentry-de.js"></script>
+<script type="text/javascript" src="/js/jquery.jqdock.min.js"></script>
+<script type="text/javascript" src="/js/treeTable.js"></script>
+<script type="text/javascript" src="/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jqplot.pieRenderer.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jqplot.highlighter.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jqplot.json2.min.js"></script>
+<script type="text/javascript" src="/js/fullcalendar.min.js"></script><link href="/css/jquery-ui-1.8.19.custom-redmond.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/css/fullCalendar-own.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/css/jquery.timeentry.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/css/treeTable.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/js/jquery.jqplot.min.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/js/scheduler/codebase/dhtmlxscheduler.css" media="screen" rel="stylesheet" type="text/css" >
+<link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" >        <title>Campus-Dual</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function() {
+                $( "#accordion" ).accordion({
+                    navigation: true,
+                    collapsible: false,
+                    active: false,
+                    autoHeight: false,
+                    // event: "mouseover",
+                    clearStyle: true,
+                    change: function(event, ui) {
+                    }
+                });
+                $(function() {
+                    $( "#header" ).accordion({
+                        collapsible: false,
+                        autoHeight: false,
+                        // event: "mouseover",
+                        clearStyle: true,
+                        change: function(event, ui) {
+                        }
+                    });
+                });
+            });
+        </script>        
+
+        <div id="container">   
+                            <div id="header">
+                    <h3 onclick="javascript: document.location='/index/login';"><a href="/dash/index">Staatliche Studienakademie Glauchau</a></h3>
+                                                            <a href="/index/login""><div id="studinfo">
+                            <table><tr><td width="85%">
+                                        <strong>Name: </strong>Buchhold, Fabian (4003195),                                         <strong> Seminargruppe: </strong>4WI18-1                                                                                <br>Studiengang Wirtschaftsinformatik/Studienrichtung Wirtschaftsinformatik                                      
+                                    </td>
+                                </tr>
+                            </table>
+                                <div id="logocd">
+                                    <img src="/images/cd.png" style="width:200px; border:none;">
+                                </div>
+                        </div></a>
+                                    </div>
+                <div id="body">
+                    <div id="content" style="height:800px;">
+                                                    <div id="lmenu">
+                                <div id="accordion" style="width:210px;">
+                                    <h3><strong><a href="#">Studium</a></strong></h3>
+                                    <div>
+                                        <a href="/index/login"><img src="/images/oarrow.png" style="border: none;">Übersicht</a><br>
+                                        <a href="/dash/modcat"><img src="/images/oarrow.png" style="border: none;">Studieninhalt</a><br>
+                                        <a href="/dash/timeline"><img src="/images/oarrow.png" style="border: none;">Blockplan</a><br>       
+                                    </div>
+                                    <h3><strong><a href="#">Module</a></strong></h3>
+                                    <div>
+                                        <a href="/mod/index"><img src="/images/oarrow.png" style="border: none;">Pflichtmodule</a><br>
+                                                                                <a href="/mod/electives"><img src="/images/oarrow.png" style="border: none;">Wahlpflichtmodule</a><br> 
+                                        <!--                                        <a href="#"><img src="/images/oarrow.png" style="border: none;">(Praxismodule)</a><br> -->
+                                    </div>   
+                                                                   
+                                    <h3><strong><a href="#">Stundenplan</a></strong></h3>
+                                    <div>
+                                        <a href="/room/index"><img src="/images/oarrow.png" style="border: none;">Planansicht</a><br>                                    
+                                                                            </div>   
+                                                              
+                                    <h3><strong><a href="#">Pr&uuml;fungen</a></strong></h3>
+                                    <div>
+                                        <a href="/acwork/expproc"><img src="/images/oarrow.png" style="border: none;">Anmeldung</a><br>   
+                                        <a href="/acwork/cancelproc"><img src="/images/oarrow.png" style="border: none;">Verfahren</a><br>   
+                                        <a href="/acwork/index"><img src="/images/oarrow.png" style="border: none;">Ergebnisse</a><br>
+                                    </div>
+                                                                        <h3><strong><a href="#">Dokumente</a></strong></h3>
+                                    <div>  
+                                        <a href="/doc/download"><img src="/images/oarrow.png" style="border: none;">Download</a><br>
+                                    </div>
+                                                                        <h3><strong><a href="#">Hilfe</a></strong></h3>
+                                    <div>    
+                                        <a href="/doc/inhalte"><img src="/images/oarrow.png" style="border: none;">Benutzung</a><br>
+                                                                            </div>
+                                    <h3 onclick="javascript: document.location='/index/logout';"><strong><a href="/index/logout">Logout</a></strong></h3>
+                                </div>
+                            </div>
+                                                <div id="main">
+                            <script type="text/javascript">
+    function doWait()
+    {
+        var x = document.getElementsByTagName( "body" )[0];
+        x.style.cursor = "wait";
+    }
+    function doNoWait()
+    {
+        var x = document.getElementsByTagName( "body" )[0];
+        x.style.cursor = "auto";
+    }
+    $(document).ready(function()  {
+        
+        var Browser = {
+            Version: function() {
+                var version = 999; // we assume a sane browser
+                if (navigator.appVersion.indexOf("MSIE") != -1)
+                // bah, IE again, lets downgrade version number
+                    version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+                return version;
+            }
+        }
+        
+	var hash = '';
+	var user = '';
+    hash="ebfa9bda485d6dc840589fd1e3a92c30";user="4003195";        
+        var data = [
+            ['erfolgreich', 0],['nicht bestanden', 0], ['gebucht', 0]
+        ];
+        if (Browser.Version() > 8) {
+            var examplot = $.jqplot ('examplot', [data],
+            {
+                seriesDefaults: {
+                    shadow: true,
+                    // seriesColors: ["#0070a3", "#4297d7", "#deedf7"],
+                    seriesColors: ["#0070a3", "#4297d7", "#fcbe04"],
+                    renderer: jQuery.jqplot.PieRenderer,
+                    rendererOptions: {
+                        highlightMouseOver: true,
+                        diameter: 160,
+                        padding: 0,
+                        showDataLabels: true,
+                        startAngle: 0,
+                        sliceMargin: 0,
+                        shadowOffset: 0,
+                        shadowAlpha: 0,
+                        shadowDepth: 0,
+                        drawBorder: false,
+                        shadow: false,
+                        borderWidth: 0,
+                        textColor: '#000000'
+                    },
+                    legend: { show:true, location: 's', xoffset:0, yoffset:0 }
+                },
+                grid: {
+                    drawGridLines: false,        
+                    ridLineColor: '#EFF2F5',    
+                    background: '#EFF2F5',      
+                    borderColor: '#EFF2F5',     
+                    borderWidth: 0.0,           
+                    shadow: false,               
+                    shadowAngle: 45,            
+                    shadowOffset: 0.5,          
+                    shadowWidth: 0,             
+                    shadowDepth: 0
+                },
+                rendererOptions: {
+                    highlightMouseOver: false,
+                    diameter: 80,
+                    padding: 0,
+                    showDataLabels: false,
+                    startAngle: 270,
+                    sliceMargin: 0,
+                    shadowOffset: 0,
+                    shadowAlpha: 0,
+                    shadowDepth: 0,
+                    drawBorder: false,
+                    shadow: false,
+                    borderWidth: 0,
+                    textColor: '#000000'
+                }
+            });
+        }
+        $(function() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "/dash/getexamstats",
+                data: "user=" + document.getElementById("examcount").getAttribute("data-user") + "&hash=" + hash,
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                    if(result.faultstring)
+                        alert("Lesen Prüfungsstatistik fehlgeschlagen. Grund: " + result.faultstring)
+                    else {          
+                        document.getElementById("examcount").innerHTML = result.EXAMS;
+                        document.getElementById("successcount").innerHTML = result.SUCCESS;
+                        document.getElementById("failurecount").innerHTML = result.FAILURE;
+                        document.getElementById("open").innerHTML = result.BOOKED;
+                        document.getElementById("modcount").innerHTML = result.MODULES;
+                        document.getElementById("bmodcount").innerHTML = result.MBOOKED;
+                        var data = [
+                            ['erfolgreich', result.SUCCESS],['nicht bestanden', result.FAILURE], ['gebucht', result.BOOKED]
+                        ];
+                        if (Browser.Version() > 8) {
+                            var examplot = $.jqplot ('examplot', [data],
+                            {
+                                seriesDefaults: {
+                                    shadow: true,
+                                    seriesColors: ["#0070a3", "#fcbe04", "#deedf7"],
+                                    renderer: jQuery.jqplot.PieRenderer,
+                                    rendererOptions: {
+                                        highlightMouseOver: true,
+                                        diameter: 160,
+                                        padding: 0,
+                                        showDataLabels: true,
+                                        startAngle: 0,
+                                        sliceMargin: 0,
+                                        shadowOffset: 0,
+                                        shadowAlpha: 0,
+                                        shadowDepth: 0,
+                                        drawBorder: false,
+                                        shadow: false,
+                                        borderWidth: 0,
+                                        textColor: '#000000'
+                                    },
+                                    legend: { show:true, location: 's' }
+                                },
+                                grid: {
+                                    drawGridLines: true,        
+                                    gridLineColor: '#FCFDFD',    
+                                    background: '#FCFDFD',      
+                                    borderColor: '#FCFDFD',     
+                                    borderWidth: 1.0,           
+                                    shadow: false,               
+                                    shadowAngle: 45,            
+                                    shadowOffset: 1.5,          
+                                    shadowWidth: 1,             
+                                    shadowDepth: 1
+                                },
+                                rendererOptions: {
+                                    highlightMouseOver: false,
+                                    diameter: 80,
+                                    padding: 0,
+                                    showDataLabels: false,
+                                    startAngle: 270,
+                                    sliceMargin: 0,
+                                    shadowOffset: 0,
+                                    shadowAlpha: 0,
+                                    shadowDepth: 0,
+                                    drawBorder: false,
+                                    shadow: false,
+                                    borderWidth: 0
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        });
+        $(function() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "/dash/getreminders",
+                data: "user=" + document.getElementById("examcount").getAttribute("data-user") + "&hash=" + hash,
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                    if(result.faultstring)
+                    // alert("Lesen Erinnerungen fehlgeschlagen. Grund: " + result.faultstring)
+                        ;
+                    else {              
+                        i = 0; remstr = "";
+                        if(typeof(result.LATEST[0]) == 'object') {              
+                            remstr = remstr + "<img src='/images/oarrow.png' style='border:none;'>&nbsp;<strong><a href='/acwork/index'>Letzte Prüfungsergebnisse:<br></a></strong>";
+                            for(var i = 0; i < result.LATEST.length; i++) {
+                                var abapdate = result.LATEST[i].AGRDATE;
+                                var datestr = abapdate.substr(6,2) + '.' + abapdate.substr(4,2) + '.' + abapdate.substr(0,4);
+                                remstr = remstr + "<a href='/acwork/index'>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/images/oarrow.png' style='border:none;'>" + datestr + ": " + result.LATEST[i].AWOBJECT + " (" + result.LATEST[i].AWOBJECT_SHORT + ") - <strong>" + result.LATEST[i].GRADESYMBOL + "</strong></a><br>";                              
+                            }
+                        }
+                        if(result.EXAMS > 0) {
+                            i+=1;
+                            // remstr = remstr + "<img src='/images/oarrow.png'  style='border:none;'>&nbsp;<strong><a href='/acwork/expproc'>Sie können sich für " + result.EXAMS + " Prüfungsverfahren anmelden</a></strong><br>";
+                            remstr = remstr + "<img src='/images/oarrow.png'  style='border:none;'>&nbsp;<strong><a href='/acwork/expproc'>Sie können sich für Prüfungsverfahren anmelden</a></strong><br>";
+                        }
+                        if(typeof(result.UPCOMING[0]) == 'object') {              
+                            remstr = remstr + "<img src='/images/oarrow.png'  style='border:none;'>&nbsp;<strong><a href='/acwork/cancelproc'>Anstehende Prüfungen:<br></a></strong>";
+                            for(var i = 0; i < result.UPCOMING.length; i++) {
+                                var abapdate = result.UPCOMING[i].EVDAT;
+                                var datestr = abapdate.substr(6,2) + '.' + abapdate.substr(4,2) + '.' + abapdate.substr(0,4);
+                                remstr = remstr + "<a href='/acwork/cancelproc'>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/images/oarrow.png'  style='border:none;'>" + datestr + ": " + result.UPCOMING[i].SM_STEXT + "</a><br>";
+                            }
+                        }
+                        if(result.ELECTIVES > 0 && result.SEMESTER <= 6) {
+                            i+=1;
+                            remstr = remstr + "<img src='/images/oarrow.png'  style='border:none;'>&nbsp;<strong><a href='/mod/electives'>Anmeldung für Wahlpflichtmodule im " + result.SEMESTER  + ". Fachsemester</a></strong><br>";
+                        }                       
+                        document.getElementById("reminders").innerHTML = remstr;
+                    }
+                }
+            });
+        });
+        $(function() {
+            $( "#procstudyprog" ).progressbar({
+                value: 0,
+                create: function(event, ui) { 
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/dash/getfs",
+                        data: "user=" + $(this).attr('data-user') + "&hash=" + hash,
+                        dataType: "json",
+                        async: true,
+                        success: function(result) {
+                            if(result.faultstring)
+                            // alert("Lesen Studienfortschritt fehlgeschlagen. Grund: " + result.faultstring)
+                                ;
+                            else {                              
+                                result = result.replace( /^(0+)/g, '' ); 
+                                result = result*1;
+                                semres = result;
+                                result = result * 100/6;
+                                $("#procstudyprog" ).progressbar( "option", "value", result );
+                                document.getElementById("studyprog").innerHTML = semres + ' (von 6)';
+                            }
+                        }
+                    });   
+                }
+            });
+        });
+        $(function() {
+            $( "#procects" ).progressbar({
+                value: 0,
+                create: function(event, ui) { 
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/dash/getcp",
+                        data: "user=" + $(this).attr('data-user') + "&hash=" + hash,
+                        dataType: "json",
+                        async: true,
+                        success: function(result) {
+                            if(result.faultstring)
+                            // alert("Lesen Credit Points fehlgeschlagen. Grund: " + result.faultstring)
+                                ;
+                            else {                              
+                                cpres = result;
+                                result = result * 100/180;
+                                $("#procects" ).progressbar( "option", "value", result );
+                                document.getElementById("ects").innerHTML = cpres + " (von 180)";
+                            }
+                        }
+                    });   
+                }
+            });
+        }); 
+        $(function() {
+            $( "#dashboard" ).accordion({
+                collapsible: false,
+                minHeight: 800,
+                autoHeight: false,
+                resize: function() {
+                    $( "#dashboard" ).accordion( "resize" );
+                }
+            });
+        });
+        $(function() {
+            $( "#examstat" ).accordion({
+                collapsible: false,
+                minHeight: 100,
+                autoHeight: false,
+                resize: function() {
+                    $( "#dashboard" ).accordion( "resize" );
+                }
+            });
+        });
+        $(function() {
+            $( "#todo" ).accordion({
+                collapsible: false,
+                minHeight: 100,
+                autoHeight: false,
+                resize: function() {
+                    $( "#dashboard" ).accordion( "resize" );
+                }
+            });
+        });
+        $(function() {
+            $( "#messages" ).accordion({
+                collapsible: false,
+                minHeight: 800,
+                autoHeight: false,
+                resize: function() {
+                    $( "#dashboard" ).accordion( "resize" );
+                }
+            });
+        });
+        $(function() {
+            $( "#today" ).accordion({
+                collapsible: false,
+                minHeight: 800,
+                autoHeight: false,
+                resize: function() {
+                    $( "#today" ).accordion( "resize" );
+                }
+            });
+        });
+        $(function() {
+            $('#cal').fullCalendar({
+                theme: true,
+                editable: false,
+                firstDay: 1,
+                firstHour: 7,
+                timeFormat: 'H:mm',
+                buttonIcons: false,
+                lazyFetching: false,
+				events: {
+			        url: '/room/json',
+			        type: 'GET',
+			        data: {
+			            userid: user,
+			            hash: hash
+	            	}
+			    },
+                columnFormat: {
+                    month: 'dddd',
+                    week: 'ddd M/d',
+                    day: 'dddd M/d'
+                },
+                titleFormat: {
+                    month: 'MMMM yyyy',
+                    week: "dd.MM.yy{ '&#8212;' dd.MM.yy}",
+                    day: 'dd.MM.yyyy'
+                },
+                monthNames: ['Januar', 'Februar', 'M&auml;rz', 'April', 'Mai', 'Juni', 'Juli',
+                    'August', 'September', 'Oktober', 'November', 'Dezember'],
+                monthNamesShort: ['Jan', 'Feb', 'M&auml;r', 'Apr', 'Mai', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch',
+                    'Donnerstag', 'Freitag', 'Samstag'],
+                dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                buttonText: {
+                    today: 'Heute'
+                },
+                timeFormat: {
+                    agenda: 'HH:mm{ - HH:mm}',
+                    basicWeek: 'HH:mm{ - HH:mm}',
+                    week: 'HH:mm{ - HH:mm}',
+                    month: '',
+                    '': 'HH:mm'
+                },
+                axisFormat: 'HH:mm',
+                allDayText: 'ganztägig',
+                allDaySlot: false,
+                selectable: false,
+                selectHelper: false,
+                columnFormat:{
+                    month: 'dddd',
+                    week: 'ddd dd.MM.',
+                    day: 'dddd dd.MM.'
+                },
+                loading: function(bool) {
+                    if (bool)  doWait(); 
+                    else  doNoWait(); 
+                },  
+                defaultView: 'agendaDay',
+                aspectRatio: 0.5,
+                renderEvent: function(event, element) {
+                    element.attr('title', event.description);
+                },
+                eventRender: function(calEvent, element, view) {
+                    var tipContent = "" +
+                        $.fullCalendar.formatDate(calEvent.start,"dd.MM.yyyy") + ": " +
+                        $.fullCalendar.formatDate(calEvent.start,"HH:mm") + "-" +
+                        $.fullCalendar.formatDate(calEvent.end,"HH:mm") + "";
+                    if (typeof calEvent.description != 'undefined') {
+                        tipContent +=  '<br><strong>' + calEvent.description + '</strong>';
+                    }
+                    tipContent += '<br/>' + 'Raum: ';
+                    if (typeof calEvent.room != 'undefined') {
+                        tipContent +=  calEvent.room;
+                    }
+                    tipContent += '<br/>' + 'Dozent: ';
+                    if (typeof calEvent.instructor != 'undefined') {
+                        tipContent += calEvent.instructor;
+                    }             
+                    tipContent += '<br/>' + 'Bemerkungen: ';
+                    if (typeof calEvent.remarks != 'undefined') {
+                        tipContent += calEvent.remarks;
+                    }                    
+                    if (view.name == "agendaDay" ) {
+                        var dayContent = "";
+                        if (typeof calEvent.room != 'undefined') {
+                            dayContent +=  'Raum: ' + calEvent.sroom;
+                        }
+                        if (typeof calEvent.instructor != 'undefined') {
+                            dayContent += '<br>Dozent: ' + calEvent.instructor;
+                        }             
+                        if (typeof calEvent.remarks != 'undefined') {
+                            dayContent += ', Bemerkungen: ' + calEvent.remarks;
+                        }
+                        element.find(".fc-event-content")
+                        .append(dayContent);
+                    }
+                    $(element).qtip({
+                        content: tipContent,
+                        position: {
+                            corner: {
+                                target: 'topMiddle',
+                                tooltip: 'bottomMiddle'
+                            }
+                        },
+                        border: {
+                            radius: 6,
+                            width: 5
+                        },
+                        style: {
+                            name: 'cream',
+                            tip: 'bottomMiddle',
+                            color: 'black',
+                            opacity: .8
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+<div id="dashboard" style="width: 600px; height: 600px;">
+    <h3><a href="#" onclick="javascript: document.location='/dash/timeline';">Studienfortschritt</a></h3>
+    <div>
+        <table style="border-spacing:0px;">
+            <tr>
+                <td><strong>Fachsemester:</strong></td><td><div id="studyprog"></div></td>
+                <td>&nbsp; &nbsp; &nbsp; </td>
+                <td><strong>ECTS-Credits:</strong></td><td><div id="ects"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2"><div style="width: 230px" id="procstudyprog" data-user="4003195"></div></td>
+                <td>&nbsp; &nbsp; &nbsp; </td>
+                <td colspan="2"><div style="width: 230px" id="procects" data-user="4003195"></div></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div id="examstat" style="width: 600px; height: 600px;">
+    <h3><a href="#" onclick="javascript: document.location='/acwork/index';">Prüfungen</a></h3>
+    <div>
+        <table>
+            <tr>
+                <td colspan="2"><strong>Prüfungsversuche insgesamt:</strong></td><td><div id="examcount" data-user="4003195"></div></td>
+                <td rowspan="8">&nbsp;&nbsp;<div id="examplot" style="height:220px;width:300px;top:-10px;left:20px; "></div></td>
+            </tr>
+            <tr>
+                <td><div style="background-color:#0070a3;width:6px;height:6px;border:1px solid #0070a3"></div></td><td>mit Erfolg abgeschlossen:</td><td><div id="successcount"></div></td>
+            </tr>
+            <tr>
+                <td><div style="background-color:#fcbe04;width:6px;height:6px;border:1px solid #fcbe04"></div></td><td>ohne Erfolg abgeschlossen:</td><td><div id="failurecount"></div></td>
+            </tr>
+            <tr>
+                <td><div style="background-color:#deedf7;width:6px;height:6px;border:1px solid #deedf7"></div></td><td>noch nicht beurteilt:</td><td><div id="open"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>gebuchte Module:</strong></td><td><div id="bmodcount"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>abgeschlossene Module:</strong></td><td><div id="modcount"></div></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td>
+            </tr>            
+        </table>
+    </div>
+</div>
+
+<div id="messages" style="width: 600px; height: 600px;">
+    <h3><a href="#">Erinnerungen</a></h3>
+    <div id="reminders">
+
+    </div>
+</div>
+
+
+<div id="today" style="width: 330px;">
+    <h3 onclick="javascript: document.location='/room/index';"><a href="#">Kalender</a></h3>
+    <div id="cal">
+    </div>
+</div>                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/index/login"><div id="logocd"></div></a>
+
+
+    </body>
+</html>
+ 
+
+<!--<h1>Das System steht wegen Wartungsarbeiten momentan nicht zur Verf&uuml;gung.</h1>
+
+<br><br>Beste Gr&uuml;sse<br><br>
+Ihr Campus-Dual-Team
+-->
