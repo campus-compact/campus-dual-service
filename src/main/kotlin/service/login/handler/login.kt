@@ -89,21 +89,21 @@ suspend fun mainlogin(body: String, router: PipelineContext<Unit, ApplicationCal
     //Request of the main Page to get the hash needed to get a json calendar
     val mainResponse: HttpResponse = client.get("$SS_URL/index/login")
 
-    //Get username with first and second name
-    var strArrayName = mainResponse.readText().split("<strong>Name: </strong>")
-    strArrayName = strArrayName[1].split("(")
-    strArrayName = strArrayName[0].split(",")
-
-    //Get Seminargruppe & Studiengang
-    var strArrayCourseOfStudy = mainResponse.readText().split("<strong> Seminargruppe: </strong>")
-    strArrayCourseOfStudy = strArrayCourseOfStudy[1].split("</td>")
-    strArrayCourseOfStudy = strArrayCourseOfStudy[0].split("<br>")
-
     val index = mainResponse.readText().indexOf(" hash=\"") // needs whitespace to match just one result
     return if (index != -1) {
+        //Get username with first and second name
+        var intName = mainResponse.readText().indexOf("<strong>Name: </strong>")
+        var strArrayName = mainResponse.readText().substring(intName + 23, intName + 23 + 16).split(",")
+
+        //Get Seminargruppe & Studiengang
+        var strArrayCourseOfStudy = mainResponse.readText().split("<strong> Seminargruppe: </strong>")
+        strArrayCourseOfStudy = strArrayCourseOfStudy[1].split("</td>")
+        strArrayCourseOfStudy = strArrayCourseOfStudy[0].split("<br>")
+
+        //built return
         var jObj = JsonObject()
         jObj["hash"] = mainResponse.readText().substring(index + 7, index + 7 + 32)
-        jObj["first_name"] = strArrayName[1]
+        jObj["first_name"] = strArrayName[1].trim()
         jObj["last_name"] = strArrayName[0]
         jObj["CourseNr"] = strArrayCourseOfStudy[0].trim()
         jObj["Course"] = strArrayCourseOfStudy[1].trim()
