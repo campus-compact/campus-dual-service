@@ -7,13 +7,14 @@ val logback_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.5.0"
+    kotlin("plugin.serialization") version "1.5.0"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
-group = "service.rest"
+group = "de.campus_compact.campus_dual_service"
 version = "0.0.1"
 application {
-    mainClass.set("service.rest.ApplicationKt")
+    mainClass.set("de.campus_compact.campus_dual_service.ApplicationKt")
 }
 
 repositories {
@@ -23,30 +24,18 @@ repositories {
 dependencies {
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation ("io.ktor:ktor-serialization:$ktor_version")
-    implementation ("com.beust:klaxon:5.5")
-    implementation ("org.jsoup:jsoup:1.13.1")
-    implementation ("org.json:json:20210307")
+    implementation("io.ktor:ktor-serialization:$ktor_version")
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("org.jsoup:jsoup:1.13.1")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-    implementation ("io.github.microutils:kotlin-logging:1.12.5")
+    testImplementation("io.ktor:ktor-client-tests:$ktor_version")
 }
-
-//tasks.withType<Jar> {
-//    manifest {
-//        attributes["Main-Class"] = "service.rest.ApplicationKt"
-//    }
-//    configurations["compileClasspath"].forEach { file: File ->
-//        from(zipTree(file.absoluteFile))
-//    }
-//}
-
-
 
 tasks.withType<ShadowJar>() {
     manifest {
-        attributes["Main-Class"] = "service.rest.ApplicationKt"
+        attributes["Main-Class"] = "de.campus_compact.campus_dual_service.ApplicationKt"
     }
 }

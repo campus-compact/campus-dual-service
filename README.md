@@ -3,9 +3,11 @@
 ## Preparation
 
 Zertifikatsverknüpfung in einer Console mit Adminrechten:
+
 ```
 keytool -import -alias example -keystore /path/to/cacerts -file cert.der
 ```
+
 > Erst mit `cd` in as Verzeichnis des Backend-Projektes gehen `C:\Users\Fabian\IdeaProjects\backend\campus-dual-service`.
 > Dann den `/path/to/cacerts` durch den Pfad der `cacerts`-Datei ersetzen.
 > Diese liegt im Verzeichnis der verwendeten Java Version, bei mir war es `C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.1\jbr\lib\security\cacerts`.
@@ -15,6 +17,7 @@ Informationen dazu: https://magicmonster.com/kb/prg/java/ssl/pkix_path_building_
 pw: `changeit`
 
 ---
+
 ## Lecture Service
 
 Die 3 Möglichkeiten der Anfrage:
@@ -33,8 +36,6 @@ Die 3 Möglichkeiten der Anfrage:
 Dabei ist `400xxxx` durch die Matrikelnummer zu ersetzen und das als JsonObject in den `body` hinzuzufügen!
 Das Bearer-Token ist im Header mitzugeben.
 
-
-
 ### Interessantes
 
 > Leider bietet unser BA-Glauchau-CampusDual keine Datums- oder Zeitfilterung bei der http-Anfrage an
@@ -45,6 +46,7 @@ Das Bearer-Token ist im Header mitzugeben.
 > USER_AGENT sind zwei Varianten implementiert, beide sollen funktionieren.
 
 ---
+
 ## TODOs
 
 > Logging von Exceptions
@@ -53,7 +55,7 @@ Das Bearer-Token ist im Header mitzugeben.
 >
 > [04.06.21] Fabian -> Logger ist implementiert (try & catch), Tests ausstehend
 
-> Kontrolle ob Token-des-Users und der User aus body übereinstimmen 
+> Kontrolle ob Token-des-Users und der User aus body übereinstimmen
 
 > Statuscode, wenn Login fehlschlägt (Code: 401)
 
