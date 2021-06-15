@@ -46,16 +46,11 @@ data class Lecture(
 
 suspend fun lecture(router: PipelineContext<Unit, ApplicationCall>) {
     val userinfo: Userinfo = try {
-        client.post(CC_URL) {
-            header("Authorization", router.call.request.headers["Authorization"])
-        }
+        client.post(CC_URL) { header("Authorization", router.call.request.headers["Authorization"]) }
     } catch (e: ClientRequestException) {
         router.call.application.environment.log.error(e.toString())
         return router.call.respond(
-            if (e.response.status == HttpStatusCode.Unauthorized)
-                HttpStatusCode.Unauthorized
-            else
-                HttpStatusCode.InternalServerError
+            if (e.response.status.value == 401) HttpStatusCode.Unauthorized else HttpStatusCode.InternalServerError
         )
     }
 
