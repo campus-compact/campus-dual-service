@@ -19,12 +19,6 @@ import org.jsoup.Jsoup
 private const val ERP_URL = "https://erp.campus-dual.de"
 private const val SS_URL = "https://selfservice.campus-dual.de"
 
-// Http Client for requests to campus dual
-private val client = HttpClient(CIO) {
-    install(HttpRedirect) { checkHttpMethod = false }
-    install(HttpCookies) { storage = AcceptAllCookiesStorage() }
-}
-
 // Regex to parse data from studentInfo
 private val lastName = Regex("(?<=Name: )(.*(?=, .* \\([0-9]+\\),))")
 private val firstName = Regex("(?<=, )(.*(?= \\([0-9]+\\),))")
@@ -51,6 +45,11 @@ data class Response(
 )
 
 suspend fun login(router: PipelineContext<Unit, ApplicationCall>) {
+    val client = HttpClient(CIO) {
+        install(HttpRedirect) { checkHttpMethod = false }
+        install(HttpCookies) { storage = AcceptAllCookiesStorage() }
+    }
+
     // Get the request body
     val req = router.call.receive<Request>()
 
@@ -95,4 +94,5 @@ suspend fun login(router: PipelineContext<Unit, ApplicationCall>) {
     } else {
         router.call.respond(HttpStatusCode.Unauthorized)
     }
+    client.close()
 }
